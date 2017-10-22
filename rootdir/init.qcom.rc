@@ -388,9 +388,10 @@ on post-fs-data
 service perfd /system/vendor/bin/perfd
    class main
    user root
-   group root readproc
-   disabled
-   socket perfd seqpacket 0666 root system
+  # group root readproc
+  # disabled
+  # socket perfd seqpacket 0666 root system
+   group root system 
    writepid /dev/cpuset/system-background/tasks
 
 service iop /system/bin/iop
@@ -471,6 +472,7 @@ service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
 
 service netmgrd /system/bin/netmgrd
     class main
+    group root wifi wakelock radio inet
     writepid /dev/cpuset/system-background/tasks
 
 service ipacm-diag /system/bin/ipacm-diag
